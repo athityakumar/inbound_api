@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.description = "A Ruby Gem API for Inbound.org platform implemented with custom web scraping."
   s.authors     = ["Athitya Kumar"]
   s.email       = 'athityakumar@gmail.com'
-  s.files       = ["lib/inbound_api.rb","lib/helper/login.rb"]
+  s.files       = ["lib/inbound_api.rb","lib/helper/login.rb","lib/helper/follow_user.rb","lib/helper/unfollow_user.rb","lib/helper/fetch_user_data.rb"]
   s.homepage    = 'http://rubygems.org/gems/inbound_api'
   s.license     = 'MIT'
 end
