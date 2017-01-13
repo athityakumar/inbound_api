@@ -2,6 +2,7 @@ class InboundAPI
   # class << self
     def initialize
       @root_url = "https://inbound.org/"
+      @scraper = Mechanize.new()
     end
 
     def login credentials
@@ -43,3 +44,4 @@ require_relative 'helper/fetch_user_data'
 # require_relative 'helper/search_users'
 require_relative 'helper/follow_user'
 require_relative 'helper/unfollow_user'
+require 'mechanize'
