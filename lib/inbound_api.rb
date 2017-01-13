@@ -1,5 +1,5 @@
 class InboundAPI
-  class << self
+  # class << self
     def initialize
       @root_url = "https://inbound.org/"
     end
@@ -33,7 +33,7 @@ class InboundAPI
     end
 
 
-  end
+  # end
 end
 
 
