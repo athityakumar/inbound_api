@@ -7,7 +7,7 @@ class InboundAPI::Login
         a.verify_mode = OpenSSL::SSL::VERIFY_NONE
       end
       @root_url = "https://inbound.org/authenticate/check"
-
+      @login_url = "https://inbound.org/login"
     end
 
     def login credentials={}
@@ -19,9 +19,13 @@ class InboundAPI::Login
           })
           @agent.get("https://inbound.org/")
           puts "Posting to #{@root_url}."
-          return @agent
+          if @agent.get(@login_url).search(".modal-content .form-login").count == 0
+            return {"response" => "Success" , "agent" => @agent}
+          else
+            return {"response" => "Failure"}        
+          end
         rescue
-          return nil
+          return {"response" => "Failure"}
         end
 
     end

@@ -5,12 +5,14 @@ class InboundAPI
       @scraper = Mechanize.new()
     end
 
-    def login credentials
+    def login credentials={}
       client = Login.new()
-      @scraper = client.login(credentials)
+      output = client.login(credentials)
+      @scraper = (output["response"] == "Success") ? output["agent"] : Mechanize.new()
+      return {"response" => output["response"]}
     end
 
-    def fetch_user_data username
+    def fetch_user_data username=""
       client = FetchUserData.new()
       data = client.fetch_user_data("https://inbound.org/in/#{username}",@scraper)
       return data
@@ -21,16 +23,17 @@ class InboundAPI
 
     # end
 
-    def follow_user username
+    def follow_user username=""
       client = FollowUser.new()
       userid = fetch_user_data(username)[:userid]
-      client.follow_user(userid,@scraper)
+      return client.follow_user(userid,@scraper)
+    
     end
 
-    def unfollow_user username
+    def unfollow_user username=""
       client = UnfollowUser.new()
       userid = fetch_user_data(username)[:userid]
-      client.unfollow_user(userid,@scraper)
+      return client.unfollow_user(userid,@scraper)
     end
 
 
