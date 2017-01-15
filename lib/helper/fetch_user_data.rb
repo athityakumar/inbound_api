@@ -1,9 +1,10 @@
-class InboundAPI::FetchUserData
+class FetchUserData < InboundAPI
   
-  def fetch_user_data url , scraper
+  def fetch_user_data username
 
+    url = "#{@member_root_url}#{username}"
     begin
-      page = scraper.get(url)
+      page = @scraper.get(url)
 
       userid = page.search(".toggle-follow-user")[0]["data-user-id"]
 
@@ -90,7 +91,9 @@ class InboundAPI::FetchUserData
         badge_wrapper.each do |badge|
           badges.push(badge.search('.karma_title').text.strip)
         end
-        number_badges = badges.count
+        number_badges = (badges.count == 0) ? nil : badges.count
+        badges = number_badges.nil? ? nil : badges
+      
       rescue 
         badges = nil
         number_badges = nil

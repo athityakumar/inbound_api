@@ -1,26 +1,16 @@
-class InboundAPI::Login
+class Login < InboundAPI
   
-    def initialize
-      @agent = Mechanize.new do |a|
-        a.follow_meta_refresh = true
-        a.user_agent_alias = "Mac Safari 4"
-        a.verify_mode = OpenSSL::SSL::VERIFY_NONE
-      end
-      @root_url = "https://inbound.org/authenticate/check"
-      @login_url = "https://inbound.org/login"
-    end
-
     def login credentials={}
 
         begin
-          @agent.post(@root_url, {
+          @scraper.post(@login_post_url, {
             email: credentials["email"],
             password: credentials["password"]
           })
-          @agent.get("https://inbound.org/")
-          puts "Posting to #{@root_url}."
-          if @agent.get(@login_url).search(".modal-content .form-login").count == 0
-            return {"response" => "Success" , "agent" => @agent}
+          @scraper.get("https://inbound.org/")
+          puts "Posting to #{@login_post_url}."
+          if @scraper.get(@login_url).search(".modal-content .form-login").count == 0
+            return {"response" => "Success" , "agent" => @scraper}
           else
             return {"response" => "Failure"}        
           end
