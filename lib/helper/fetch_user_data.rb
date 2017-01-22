@@ -105,28 +105,28 @@ class FetchUserData < InboundAPI
       end
 
       return {
-        response: "Success",
-        userid: userid,
-        name: fullname,
-        image_url: image,
-        location: location,
-        karma: karma,
-        number_followers: followers,
-        number_following: following,
-        work: company,
-        company_link: company_link,
-        twitter_link: tw_link,
-        facebook_link: fb_link,
-        linkedin_link: in_link,
-        googleplus_link: gplus_link,
-        my_link: web_link,
-        number_badges: number_badges,
-        badges: badges,
-        recent_activity: recent_activity
+        "response" => "Success",
+        "userid" => userid,
+        "name" => fullname,
+        "image_url" => image,
+        "location" => location,
+        "karma" => karma,
+        "number_followers" => followers,
+        "number_following" => following,
+        "work" => company,
+        "company_link" => company_link,
+        "twitter_link" => tw_link,
+        "facebook_link" => fb_link,
+        "linkedin_link" => in_link,
+        "googleplus_link" => gplus_link,
+        "my_link" => web_link,
+        "number_badges" => number_badges,
+        "badges" => badges,
+        "recent_activity" => recent_activity
       }
     rescue
       return {
-        response: "Failure"
+        "response" => "Failure"
       }
 
     end

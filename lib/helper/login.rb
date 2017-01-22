@@ -8,7 +8,6 @@ class Login < InboundAPI
             password: credentials["password"]
           })
           @scraper.get("https://inbound.org/")
-          puts "Posting to #{@login_post_url}."
           if @scraper.get(@login_url).search(".modal-content .form-login").count == 0
             return {"response" => "Success" , "agent" => @scraper}
           else

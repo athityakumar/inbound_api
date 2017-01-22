@@ -18,12 +18,12 @@ class FetchFollowing < InboundAPI
 
 
       return {
-        response: "Success",
-        following: following
+        "response" => "Success",
+        "following" => following
       }
     rescue
       return {
-        response: "Failure"
+        "response" => "Failure"
       }
 
     end
